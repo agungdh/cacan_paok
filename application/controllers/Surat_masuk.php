@@ -39,16 +39,28 @@ class Surat_masuk extends CI_Controller {
 					$date=date_create($value);
 					$data[$key] = date_format($date,"Y-m-d");
 					break;
-				
+				case 'kategori':
+					$this->db->like('kategori', $value);
+					$kategori = $this->db->get('kategori')->row();
+					if ($kategori != null) {
+						$data['kategori_id'] = $kategori->id;
+					} else {
+						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
+						$data['kategori_id'] = $this->db->insert_id();
+					}
+					break;
 				default:
 					$data[$key] = $value;
 					break;
 			}
 		}
 
+		$berkas = $_FILES['berkas'];
+		$data['file'] = $berkas['name'];
+
 		$this->db->insert('surat_masuk', $data);
 
-		$this->db->update('peminjaman', ['status' => 0], ['noseri' => $data['noseri']]);
+		move_uploaded_file($berkas['tmp_name'], 'uploads/')
 
 		redirect(base_url('surat_masuk'));
 	}
@@ -88,6 +100,13 @@ class Surat_masuk extends CI_Controller {
 		$this->db->update('peminjaman', ['status' => 1], ['id' => $peminjaman->id]);
 
 		redirect(base_url('surat_masuk'));
+	}
+
+	function ajax_jabatan() {
+		$query = $this->db->query('SELECT kategori name
+									FROM kategori
+									WHERE kategori LIKE ?', ['%' . $this->input->get('kat') . '%']);
+		echo json_encode($query->result());
 	}
 
 }
