@@ -27,11 +27,6 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label">Level</label>
-            <input class="form-control" required readonly type="text" placeholder="Masukan Level" name="cdata[level]" value="<?php echo $data['user']->level == 1 ? "Administrator" : "Operator"; ?>">
-          </div>
-
-          <div class="form-group">
             <label class="control-label">Foto</label>
             <input class="form-control" type="file" name="foto">
           </div>
