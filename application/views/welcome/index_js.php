@@ -14,7 +14,7 @@ var data = {
             ],
             datasets: [
                   {
-                        label: "Peminjaman",
+                        label: "Surat Masuk",
                         fillColor: "rgba(220,220,220,0.2)",
                         strokeColor: "rgba(220,220,220,1)",
                         pointColor: "rgba(220,220,220,1)",
@@ -29,7 +29,7 @@ var data = {
 
                               $array[] = $this->db->query("
                                     SELECT count(*) total
-                                    FROM peminjaman
+                                    FROM surat_masuk
                                     WHERE month(tanggal) = ?
                                     AND year(tanggal) = ?
                               ", [$bulan, $tahun])->row()->total;             
@@ -42,7 +42,7 @@ var data = {
                         ]
                   },
                   {
-                        label: "Pengembalian",
+                        label: "Surat Keluar",
                         fillColor: "rgba(151,187,205,0.2)",
                         strokeColor: "rgba(151,187,205,1)",
                         pointColor: "rgba(151,187,205,1)",
@@ -57,7 +57,7 @@ var data = {
 
                               $array[] = $this->db->query("
                                     SELECT count(*) total
-                                    FROM pengembalian
+                                    FROM surat_keluar
                                     WHERE month(tanggal) = ?
                                     AND year(tanggal) = ?
                               ", [$bulan, $tahun])->row()->total;             
