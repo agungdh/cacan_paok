@@ -38,7 +38,12 @@
                 <td><?php echo $item->pengirim; ?></td>
                 <td><?php echo $item->perihal; ?></td>
                 <td><a href="<?php echo base_url('tools/download_masuk/' . $item->id); ?>"><?php echo $item->file; ?></a></td>
-                <td><?php echo $item->perihal; ?></td>
+                <td>
+                  <div class="btn-group">
+                    <a class="btn btn-primary" href="<?php echo base_url('surat_masuk/ubah/' . $item->id); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-primary" href="#" onclick="hapus('<?php echo $item->id; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                  </div>
+                </td>
               </tr>
               <?php
             }

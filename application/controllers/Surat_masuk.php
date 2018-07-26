@@ -89,15 +89,9 @@ class Surat_masuk extends CI_Controller {
 	}
 
 	function aksi_hapus($id) {
-		$surat_masuk = $this->db->get_where('surat_masuk', ['id' => $id])->row();
-
 		$this->db->delete('surat_masuk', ['id' => $id]);
 
-		$this->db->where(['noseri' => $surat_masuk->noseri]);
-		$this->db->order_by('id', 'DESC');
-		$peminjaman = $this->db->get('peminjaman')->row();
-
-		$this->db->update('peminjaman', ['status' => 1], ['id' => $peminjaman->id]);
+		unlink('uploads/masuk/' . $id);
 
 		redirect(base_url('surat_masuk'));
 	}
