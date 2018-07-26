@@ -26,14 +26,6 @@
             <input class="form-control" required type="text" placeholder="Masukan Username" name="data[username]" value="<?php echo $data['user']->username; ?>">
           </div>
 
-          <div class="form-group">
-            <label class="control-label">Level</label>
-            <select class="form-control select2" required name="data[level]">
-              <option <?php echo $data['user']->level == 1 ? 'selected' : null; ?> value="1">Administrator</option>
-              <option <?php echo $data['user']->level == 2 ? 'selected' : null; ?> value="2">Operator</option>
-            </select>
-          </div>
-
           </div>
           <div class="tile-footer">
             <button id="simpan_ubah" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Simpan</button>

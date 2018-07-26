@@ -20,34 +20,16 @@
             <tr>
               <th>Nama</th>
               <th>Username</th>
-              <th>Level</th>
               <th>Proses</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            $this->db->where('id !=', $this->session->id);
             foreach ($this->db->get('user')->result() as $item) {
               ?>
               <tr>
                 <td><?php echo $item->nama; ?></td>
                 <td><?php echo $item->username; ?></td>
-                <?php
-                switch ($item->level) {
-                  case 1:
-                    $level = "Administrator";
-                    break;
-
-                  case 2:
-                    $level = "Operator";
-                    break;
-                  
-                  default:
-                    redirect(base_url('logout'));
-                    break;
-                }
-                ?>
-                <td><?php echo $level; ?></td>
                 <td>
                   <div class="btn-group">
                     <a class="btn btn-primary" href="<?php echo base_url('user/ubah/' . $item->id); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
