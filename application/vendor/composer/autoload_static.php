@@ -11,12 +11,30 @@ class ComposerStaticInitbca262e1e93c4f2ca194525e8ba41a01
         array (
             'Gumlet\\' => 7,
         ),
+        'A' => 
+        array (
+            'Apfelbox\\FileDownload\\' => 22,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Gumlet\\' => 
         array (
             0 => __DIR__ . '/..' . '/gumlet/php-image-resize/lib',
+        ),
+        'Apfelbox\\FileDownload\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/apfelbox/php-file-download/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'Skyzyx\\Components\\Mimetypes' => 
+            array (
+                0 => __DIR__ . '/..' . '/skyzyx/mimetypes/src',
+            ),
         ),
     );
 
@@ -25,6 +43,7 @@ class ComposerStaticInitbca262e1e93c4f2ca194525e8ba41a01
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitbca262e1e93c4f2ca194525e8ba41a01::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitbca262e1e93c4f2ca194525e8ba41a01::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitbca262e1e93c4f2ca194525e8ba41a01::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -34,10 +34,11 @@
               <tr>
                 <td><?php echo $item->tanggal; ?></td>
                 <td><?php echo $item->nosurat; ?></td>
-                <td><?php echo $this->db->get_where('kategori', ['id' => $item->tanggal])->row()->kategori; ?></td>
+                <td><?php echo $this->db->get_where('kategori', ['id' => $item->kategori_id])->row()->kategori; ?></td>
                 <td><?php echo $item->pengirim; ?></td>
                 <td><?php echo $item->perihal; ?></td>
-                <td><a href="<?php echo base_url('download/masuk/' . $item->id); ?>"><?php echo $item->file; ?></a></td>
+                <td><a href="<?php echo base_url('tools/download_masuk/' . $item->id); ?>"><?php echo $item->file; ?></a></td>
+                <td><?php echo $item->perihal; ?></td>
               </tr>
               <?php
             }

@@ -60,7 +60,7 @@ class Surat_masuk extends CI_Controller {
 
 		$this->db->insert('surat_masuk', $data);
 
-		move_uploaded_file($berkas['tmp_name'], 'uploads/')
+		move_uploaded_file($berkas['tmp_name'], 'uploads/masuk/' . $this->db->insert_id());
 
 		redirect(base_url('surat_masuk'));
 	}

@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Gumlet\\' => array($vendorDir . '/gumlet/php-image-resize/lib'),
+    'Apfelbox\\FileDownload\\' => array($vendorDir . '/apfelbox/php-file-download/src'),
 );
