@@ -72,7 +72,16 @@ class Surat_masuk extends CI_Controller {
 					$date=date_create($value);
 					$data[$key] = date_format($date,"Y-m-d");
 					break;
-				
+				case 'kategori':
+					$this->db->like('kategori', $value);
+					$kategori = $this->db->get('kategori')->row();
+					if ($kategori != null) {
+						$data['kategori_id'] = $kategori->id;
+					} else {
+						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
+						$data['kategori_id'] = $this->db->insert_id();
+					}
+					break;
 				default:
 					$data[$key] = $value;
 					break;
@@ -80,10 +89,24 @@ class Surat_masuk extends CI_Controller {
 		}
 
 		foreach ($this->input->post('where') as $key => $value) {
-			$where[$key] = $value;
+			switch ($key) {
+				default:
+					$where[$key] = $value;
+					break;
+			}
+		}
+
+		$berkas = $_FILES['berkas'];
+		
+		if ($berkas['size'] != 0) {
+			$data['file'] = $berkas['name'];
 		}
 
 		$this->db->update('surat_masuk', $data, $where);
+
+		if ($berkas['size'] != 0) {
+			move_uploaded_file($berkas['tmp_name'], 'uploads/masuk/' . $where['id']);
+		}
 
 		redirect(base_url('surat_masuk'));
 	}

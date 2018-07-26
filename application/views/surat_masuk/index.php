@@ -32,7 +32,7 @@
             foreach ($this->db->get('surat_masuk')->result() as $item) {
               ?>
               <tr>
-                <td><?php echo $item->tanggal; ?></td>
+                <td><?php echo $this->pustaka->tanggal_indo($item->tanggal); ?></td>
                 <td><?php echo $item->nosurat; ?></td>
                 <td><?php echo $this->db->get_where('kategori', ['id' => $item->kategori_id])->row()->kategori; ?></td>
                 <td><?php echo $item->pengirim; ?></td>
