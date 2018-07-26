@@ -25,4 +25,11 @@ class Tools extends CI_Controller {
 		$fileDownload->sendDownload($surat_masuk->file);
 	}
 
+	function download_keluar($surat_keluar_id) {
+		$surat_keluar = $this->db->get_where('surat_keluar', ['id' => $surat_keluar_id])->row();
+
+		$fileDownload = FileDownload::createFromFilePath('uploads/keluar/' . $surat_keluar->id);
+		$fileDownload->sendDownload($surat_keluar->file);
+	}
+
 }
