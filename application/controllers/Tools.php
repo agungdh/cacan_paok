@@ -11,24 +11,17 @@ class Tools extends CI_Controller {
 		}
 	}
 
-	function ajax_kategori() {
-		$query = $this->db->query('SELECT kategori name
-									FROM kategori
-									WHERE kategori LIKE ?', ['%' . $this->input->get('kat') . '%']);
-		echo json_encode($query->result());
-	}
+	function download_masuk($id_surat_masuk) {
+		$surat_masuk = $this->db->get_where('surat_masuk', ['id_surat_masuk' => $id_surat_masuk])->row();
 
-	function download_masuk($surat_masuk_id) {
-		$surat_masuk = $this->db->get_where('surat_masuk', ['id' => $surat_masuk_id])->row();
-
-		$fileDownload = FileDownload::createFromFilePath('uploads/masuk/' . $surat_masuk->id);
+		$fileDownload = FileDownload::createFromFilePath('uploads/masuk/' . $surat_masuk->id_surat_masuk);
 		$fileDownload->sendDownload($surat_masuk->file);
 	}
 
-	function download_keluar($surat_keluar_id) {
-		$surat_keluar = $this->db->get_where('surat_keluar', ['id' => $surat_keluar_id])->row();
+	function download_keluar($id_surat_keluar) {
+		$surat_keluar = $this->db->get_where('surat_keluar', ['id_surat_keluar' => $id_surat_keluar])->row();
 
-		$fileDownload = FileDownload::createFromFilePath('uploads/keluar/' . $surat_keluar->id);
+		$fileDownload = FileDownload::createFromFilePath('uploads/keluar/' . $surat_keluar->id_surat_keluar);
 		$fileDownload->sendDownload($surat_keluar->file);
 	}
 

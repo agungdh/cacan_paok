@@ -24,10 +24,10 @@ class Surat_masuk extends CI_Controller {
 		$this->load->view('template/template', $data);
 	}
 
-	function ubah($id) {
+	function ubah($id_surat_masuk) {
 		$data['isi'] = 'surat_masuk/ubah';
 		$data['js'] = 'surat_masuk/ubah_js';
-		$data['data']['surat_masuk'] = $this->db->get_where('surat_masuk', ['id' => $id])->row();
+		$data['data']['surat_masuk'] = $this->db->get_where('surat_masuk', ['id_surat_masuk' => $id_surat_masuk])->row();
 
 		$this->load->view('template/template', $data);
 	}
@@ -43,10 +43,10 @@ class Surat_masuk extends CI_Controller {
 					$this->db->like('kategori', $value);
 					$kategori = $this->db->get('kategori')->row();
 					if ($kategori != null) {
-						$data['kategori_id'] = $kategori->id;
+						$data['kategori_id_surat_masuk'] = $kategori->id_surat_masuk;
 					} else {
 						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
-						$data['kategori_id'] = $this->db->insert_id();
+						$data['kategori_id_surat_masuk'] = $this->db->insert_id_surat_masuk();
 					}
 					break;
 				default:
@@ -60,7 +60,7 @@ class Surat_masuk extends CI_Controller {
 
 		$this->db->insert('surat_masuk', $data);
 
-		move_uploaded_file($berkas['tmp_name'], 'uploads/masuk/' . $this->db->insert_id());
+		move_uploaded_file($berkas['tmp_name'], 'uploads/masuk/' . $this->db->insert_id_surat_masuk());
 
 		redirect(base_url('surat_masuk'));
 	}
@@ -76,10 +76,10 @@ class Surat_masuk extends CI_Controller {
 					$this->db->like('kategori', $value);
 					$kategori = $this->db->get('kategori')->row();
 					if ($kategori != null) {
-						$data['kategori_id'] = $kategori->id;
+						$data['kategori_id_surat_masuk'] = $kategori->id_surat_masuk;
 					} else {
 						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
-						$data['kategori_id'] = $this->db->insert_id();
+						$data['kategori_id_surat_masuk'] = $this->db->insert_id_surat_masuk();
 					}
 					break;
 				default:
@@ -105,16 +105,16 @@ class Surat_masuk extends CI_Controller {
 		$this->db->update('surat_masuk', $data, $where);
 
 		if ($berkas['size'] != 0) {
-			move_uploaded_file($berkas['tmp_name'], 'uploads/masuk/' . $where['id']);
+			move_uploaded_file($berkas['tmp_name'], 'uploads/masuk/' . $where['id_surat_masuk']);
 		}
 
 		redirect(base_url('surat_masuk'));
 	}
 
-	function aksi_hapus($id) {
-		$this->db->delete('surat_masuk', ['id' => $id]);
+	function aksi_hapus($id_surat_masuk) {
+		$this->db->delete('surat_masuk', ['id_surat_masuk' => $id_surat_masuk]);
 
-		unlink('uploads/masuk/' . $id);
+		unlink('uploads/masuk/' . $id_surat_masuk);
 
 		redirect(base_url('surat_masuk'));
 	}

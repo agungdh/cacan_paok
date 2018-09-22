@@ -13,7 +13,7 @@ class Profil extends CI_Controller {
 	function index() {
 		$data['isi'] = 'profil/index';
 		$data['js'] = 'profil/index_js';
-		$data['data']['user'] = $this->db->get_where('user', ['id' => $this->session->id])->row();
+		$data['data']['user'] = $this->db->get_where('user', ['id_user' => $this->session->id_user])->row();
 
 		$this->load->view('template/template', $data);
 	}
@@ -21,13 +21,13 @@ class Profil extends CI_Controller {
 	function aksi_ubah() {
 		$fav = $_FILES['foto'];
 		if ($fav['size'] != 0) {
-			move_uploaded_file($fav['tmp_name'], 'uploads/userimage/temp/' . $this->session->id);
+			move_uploaded_file($fav['tmp_name'], 'uploads/userimage/temp/' . $this->session->id_user);
 
-			$image = new \Gumlet\ImageResize('uploads/userimage/temp/' . $this->session->id);
+			$image = new \Gumlet\ImageResize('uploads/userimage/temp/' . $this->session->id_user);
 			$image->crop(64, 64);
-			$image->save('uploads/userimage/' . $this->session->id);
+			$image->save('uploads/userimage/' . $this->session->id_user);
 
-			unlink('uploads/userimage/temp/' . $this->session->id);
+			unlink('uploads/userimage/temp/' . $this->session->id_user);
 		}
 
 		foreach ($this->input->post('data') as $key => $value) {

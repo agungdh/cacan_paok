@@ -24,10 +24,10 @@ class Surat_keluar extends CI_Controller {
 		$this->load->view('template/template', $data);
 	}
 
-	function ubah($id) {
+	function ubah($id_surat_keluar) {
 		$data['isi'] = 'surat_keluar/ubah';
 		$data['js'] = 'surat_keluar/ubah_js';
-		$data['data']['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id])->row();
+		$data['data']['surat_keluar'] = $this->db->get_where('surat_keluar', ['id_surat_keluar' => $id_surat_keluar])->row();
 
 		$this->load->view('template/template', $data);
 	}
@@ -43,10 +43,10 @@ class Surat_keluar extends CI_Controller {
 					$this->db->like('kategori', $value);
 					$kategori = $this->db->get('kategori')->row();
 					if ($kategori != null) {
-						$data['kategori_id'] = $kategori->id;
+						$data['kategori_id_surat_keluar'] = $kategori->id_surat_keluar;
 					} else {
 						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
-						$data['kategori_id'] = $this->db->insert_id();
+						$data['kategori_id_surat_keluar'] = $this->db->insert_id_surat_keluar();
 					}
 					break;
 				default:
@@ -60,7 +60,7 @@ class Surat_keluar extends CI_Controller {
 
 		$this->db->insert('surat_keluar', $data);
 
-		move_uploaded_file($berkas['tmp_name'], 'uploads/keluar/' . $this->db->insert_id());
+		move_uploaded_file($berkas['tmp_name'], 'uploads/keluar/' . $this->db->insert_id_surat_keluar());
 
 		redirect(base_url('surat_keluar'));
 	}
@@ -76,10 +76,10 @@ class Surat_keluar extends CI_Controller {
 					$this->db->like('kategori', $value);
 					$kategori = $this->db->get('kategori')->row();
 					if ($kategori != null) {
-						$data['kategori_id'] = $kategori->id;
+						$data['kategori_id_surat_keluar'] = $kategori->id_surat_keluar;
 					} else {
 						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
-						$data['kategori_id'] = $this->db->insert_id();
+						$data['kategori_id_surat_keluar'] = $this->db->insert_id_surat_keluar();
 					}
 					break;
 				default:
@@ -105,16 +105,16 @@ class Surat_keluar extends CI_Controller {
 		$this->db->update('surat_keluar', $data, $where);
 
 		if ($berkas['size'] != 0) {
-			move_uploaded_file($berkas['tmp_name'], 'uploads/keluar/' . $where['id']);
+			move_uploaded_file($berkas['tmp_name'], 'uploads/keluar/' . $where['id_surat_keluar']);
 		}
 
 		redirect(base_url('surat_keluar'));
 	}
 
-	function aksi_hapus($id) {
-		$this->db->delete('surat_keluar', ['id' => $id]);
+	function aksi_hapus($id_surat_keluar) {
+		$this->db->delete('surat_keluar', ['id_surat_keluar' => $id_surat_keluar]);
 
-		unlink('uploads/keluar/' . $id);
+		unlink('uploads/keluar/' . $id_surat_keluar);
 
 		redirect(base_url('surat_keluar'));
 	}

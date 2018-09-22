@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInitbca262e1e93c4f2ca194525e8ba41a01
 {
     public static $prefixLengthsPsr4 = array (
+        'a' => 
+        array (
+            'agungdh\\' => 8,
+        ),
         'G' => 
         array (
             'Gumlet\\' => 7,
@@ -18,6 +22,10 @@ class ComposerStaticInitbca262e1e93c4f2ca194525e8ba41a01
     );
 
     public static $prefixDirsPsr4 = array (
+        'agungdh\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/agungdh/pustaka/src',
+        ),
         'Gumlet\\' => 
         array (
             0 => __DIR__ . '/..' . '/gumlet/php-image-resize/lib',

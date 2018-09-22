@@ -22,12 +22,12 @@ If using [Composer](https://getcomposer.org/), in your `composer.json` file add:
 ```json
 {
     "require": {
-        "gumlet/php-image-resize": "1.8.*"
+        "gumlet/php-image-resize": "1.9.*"
     }
 }
 ```
 
-If you are still using PHP 5.3, please install version ```1.7.0``` or below of this library.
+If you are still using PHP 5.3, please install version ```1.7.0``` and if you are using PHP 5.4, please install version ```1.8.0``` of this library.
 
 Otherwise:
 
@@ -143,7 +143,7 @@ $image->save('image2.jpg');
 
 ```php
 $image = new ImageResize('image.jpg');
-$image->crop(200, 200, ImageResize::CROPCENTER);
+$image->crop(200, 200, true, ImageResize::CROPCENTER);
 $image->save('image2.jpg');
 ```
 
@@ -154,7 +154,7 @@ For instance passing the crop mode `CROPTOP` will result as 100px taken off the 
 
 ```php
 $image = new ImageResize('image.jpg');
-$image->crop(200, 200, ImageResize::CROPTOP);
+$image->crop(200, 200, true, ImageResize::CROPTOP);
 $image->save('image2.jpg');
 ```
 
@@ -162,7 +162,7 @@ On the contrary passing the crop mode `CROPBOTTOM` will result as 100px taken of
 
 ```php
 $image = new ImageResize('image.jpg');
-$image->crop(200, 200, ImageResize::CROPBOTTOM);
+$image->crop(200, 200, true, ImageResize::CROPBOTTOM);
 $image->save('image2.jpg');
 ```
 

@@ -24,10 +24,10 @@ class User extends CI_Controller {
 		$this->load->view('template/template', $data);
 	}
 
-	function ubah($id) {
+	function ubah($id_user) {
 		$data['isi'] = 'user/ubah';
 		$data['js'] = 'user/ubah_js';
-		$data['data']['user'] = $this->db->get_where('user', ['id' => $id])->row();
+		$data['data']['user'] = $this->db->get_where('user', ['id_user' => $id_user])->row();
 
 		$this->load->view('template/template', $data);
 	}
@@ -78,8 +78,8 @@ class User extends CI_Controller {
 		redirect(base_url('user'));
 	}
 
-	function aksi_hapus($id) {
-		$this->db->delete('user', ['id' => $id]);
+	function aksi_hapus($id_user) {
+		$this->db->delete('user', ['id_user' => $id_user]);
 
 		redirect(base_url('user'));
 	}
@@ -90,7 +90,7 @@ class User extends CI_Controller {
 
 	      $row = $this->db->query("SELECT count(*) total_data 
 	        FROM user
-	        WHERE id != ?", [$this->session->id])->row();
+	        WHERE id_user != ?", [$this->session->id_user])->row();
 
 	        $totalData = $row->total_data;
 	        $totalFiltered = $totalData; 
@@ -102,7 +102,7 @@ class User extends CI_Controller {
 
 		    $cari = [];
 
-		    $cari[] = $this->session->id;
+		    $cari[] = $this->session->id_user;
 
 	  	    for ($i=1; $i <= 2; $i++) { 
 		    	$cari[] = $search_value;
@@ -110,7 +110,7 @@ class User extends CI_Controller {
 
 	      $row = $this->db->query("SELECT count(*) total_data 
 	        FROM user
-	        WHERE (id != ?
+	        WHERE (id_user != ?
 	        		AND (username LIKE ? OR nama LIKE ?)
 	    		)", $cari)->row();
 
@@ -118,7 +118,7 @@ class User extends CI_Controller {
 
 	      $query = $this->db->query("SELECT *
 	        FROM user
-	        WHERE (id != ?
+	        WHERE (id_user != ?
 	        		AND (username LIKE ? OR nama LIKE ?)
 	    		)
 	        ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."   LIMIT ".$requestData['start']." ,".$requestData['length'], $cari);
@@ -127,14 +127,14 @@ class User extends CI_Controller {
 
 	      $query = $this->db->query("SELECT *
 	        FROM user
-	        WHERE id != ?
-	        ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."   LIMIT ".$requestData['start']." ,".$requestData['length'], [$this->session->id]);
+	        WHERE id_user != ?
+	        ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."   LIMIT ".$requestData['start']." ,".$requestData['length'], [$this->session->id_user]);
 	            
 	    }
 
 	    foreach ($query->result() as $row) { 
 	      $nestedData=[]; 
-	      $id = $row->id;
+	      $id_user = $row->id_user;
 	      $nestedData[] = $row->nama;
 	      $nestedData[] = $row->username;
 			switch ($row->level) {
@@ -152,8 +152,8 @@ class User extends CI_Controller {
 	      $nestedData[] = $level;
 	      $nestedData[] = '
 	          <div class="btn-group">
-	            <a class="btn btn-primary" href="' . base_url('user/ubah/' . $row->id) . '" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
-	            <a class="btn btn-primary" href="#" onclick="hapus(' . "'$row->id'" . ')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+	            <a class="btn btn-primary" href="' . base_url('user/ubah/' . $row->id_user) . '" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
+	            <a class="btn btn-primary" href="#" onclick="hapus(' . "'$row->id_user'" . ')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
 	          </div>';
 
 	      $data[] = $nestedData;

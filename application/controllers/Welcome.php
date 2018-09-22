@@ -22,7 +22,7 @@ class Welcome extends CI_Controller {
 
 		if ($data_user != null) {			
 			$array_data_user = array(
-				'id'  => $data_user->id,
+				'id_user'  => $data_user->id_user,
 				'nama'  => $data_user->nama,
 				'username'  => $data_user->username,
 				'login'  => true

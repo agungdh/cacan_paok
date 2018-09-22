@@ -1,5 +1,43 @@
 [
     {
+        "name": "agungdh/pustaka",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/agungdh/pustaka.git",
+            "reference": "f205631c9a50d1cf88de1bd87eb3991a05b6cf4e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/agungdh/pustaka/zipball/f205631c9a50d1cf88de1bd87eb3991a05b6cf4e",
+            "reference": "f205631c9a50d1cf88de1bd87eb3991a05b6cf4e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6.0"
+        },
+        "time": "2018-09-15T06:51:47+00:00",
+        "type": "package",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "agungdh\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "agungdh",
+                "email": "agungdh@live.com"
+            }
+        ],
+        "description": "Collection of libraries commonly used in developing web applications by AgungDH"
+    },
+    {
         "name": "apfelbox/php-file-download",
         "version": "v2.1",
         "version_normalized": "2.1.0.0",
@@ -45,34 +83,35 @@
     },
     {
         "name": "gumlet/php-image-resize",
-        "version": "1.8.0",
-        "version_normalized": "1.8.0.0",
+        "version": "1.9.1",
+        "version_normalized": "1.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/gumlet/php-image-resize.git",
-            "reference": "203210e94849c809bdb97fff4f803a7932e2bc62"
+            "reference": "d36a7bcd679445ec8f310fdbecac5d40b0c587de"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/gumlet/php-image-resize/zipball/203210e94849c809bdb97fff4f803a7932e2bc62",
-            "reference": "203210e94849c809bdb97fff4f803a7932e2bc62",
+            "url": "https://api.github.com/repos/gumlet/php-image-resize/zipball/d36a7bcd679445ec8f310fdbecac5d40b0c587de",
+            "reference": "d36a7bcd679445ec8f310fdbecac5d40b0c587de",
             "shasum": ""
         },
         "require": {
             "ext-fileinfo": "*",
             "ext-gd": "*",
-            "php": ">=5.4.0"
+            "php": ">=5.5.0"
         },
         "require-dev": {
+            "apigen/apigen": "^4.1",
             "ext-exif": "*",
             "ext-gd": "*",
-            "php-coveralls/php-coveralls": "dev-master || ^1.0",
+            "php-coveralls/php-coveralls": "^2.1",
             "phpunit/phpunit": "^4.8"
         },
         "suggest": {
             "ext-exif": "Auto-rotate jpeg files"
         },
-        "time": "2018-02-10T05:20:52+00:00",
+        "time": "2018-07-28T11:04:15+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

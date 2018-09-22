@@ -45,8 +45,8 @@ $now = date('YmdHis');
     <aside class="app-sidebar">
       <!-- User Image -->
       <?php
-      if (file_exists('uploads/userimage/' . $this->session->id)) {
-        $userimage = 'uploads/userimage/' . $this->session->id;
+      if (file_exists('uploads/userimage/' . $this->session->id_user)) {
+        $userimage = 'uploads/userimage/' . $this->session->id_user;
       } else {
         $userimage = 'assets/user.png';
       }

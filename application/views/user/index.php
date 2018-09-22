@@ -20,6 +20,7 @@
             <tr>
               <th>Nama</th>
               <th>Username</th>
+              <th>Level</th>
               <th>Proses</th>
             </tr>
           </thead>
@@ -30,10 +31,11 @@
               <tr>
                 <td><?php echo $item->nama; ?></td>
                 <td><?php echo $item->username; ?></td>
+                <td><?php echo $item->level == 'a' ? 'Admin' : 'Kepala Badan'; ?></td>
                 <td>
                   <div class="btn-group">
-                    <a class="btn btn-primary" href="<?php echo base_url('user/ubah/' . $item->id); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
-                    <a class="btn btn-primary" href="#" onclick="hapus('<?php echo $item->id; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-primary" href="<?php echo base_url('user/ubah/' . $item->id_user); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-primary" href="#" onclick="hapus('<?php echo $item->id_user; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
                   </div>
                 </td>
               </tr>

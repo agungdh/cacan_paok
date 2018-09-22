@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'agungdh\\' => array($vendorDir . '/agungdh/pustaka/src'),
     'Gumlet\\' => array($vendorDir . '/gumlet/php-image-resize/lib'),
     'Apfelbox\\FileDownload\\' => array($vendorDir . '/apfelbox/php-file-download/src'),
 );

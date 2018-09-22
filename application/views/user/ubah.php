@@ -14,7 +14,7 @@
       <div class="tile-body">
         <form id="form_ubah" method="post" action="<?php echo base_url('user/aksi_ubah'); ?>">
           
-          <input type="hidden" name="where[id]" value="<?php echo $data['user']->id; ?>">
+          <input type="hidden" name="where[id_user]" value="<?php echo $data['user']->id_user; ?>">
 
           <div class="form-group">
             <label class="control-label">Nama</label>
@@ -24,6 +24,14 @@
           <div class="form-group">
             <label class="control-label">Username</label>
             <input class="form-control" required type="text" placeholder="Masukan Username" name="data[username]" value="<?php echo $data['user']->username; ?>">
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Level</label>
+            <select class="form-control select2" required name="data[level]">
+              <option <?php echo $data['user']->level == 'a' ? 'selected' : null; ?> value="a">Admin</option>
+              <option <?php echo $data['user']->level == 'k' ? 'selected' : null; ?> value="k">Kepala Badan</option>
+            </select>
           </div>
 
           </div>
@@ -42,7 +50,7 @@
       <div class="tile-body">
         <form id="form_ubah_password" method="post" action="<?php echo base_url('user/aksi_ubah_password'); ?>">
           
-          <input type="hidden" name="where[id]" value="<?php echo $data['user']->id; ?>">
+          <input type="hidden" name="where[id_user]" value="<?php echo $data['user']->id_user; ?>">
 
           <div class="form-group">
             <label class="control-label">Password</label>
