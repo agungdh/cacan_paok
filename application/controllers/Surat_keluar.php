@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use agungdh\Pustaka;
+
 class Surat_keluar extends CI_Controller {
 	function __construct(){
 		parent::__construct();
@@ -13,6 +15,7 @@ class Surat_keluar extends CI_Controller {
 	function index() {
 		$data['isi'] = 'surat_keluar/index';
 		$data['js'] = 'surat_keluar/index_js';
+		$data['data']['pustaka'] = new Pustaka();
 
 		$this->load->view('template/template', $data);
 	}
@@ -27,6 +30,7 @@ class Surat_keluar extends CI_Controller {
 	function ubah($id_surat_keluar) {
 		$data['isi'] = 'surat_keluar/ubah';
 		$data['js'] = 'surat_keluar/ubah_js';
+		$data['data']['pustaka'] = new Pustaka();
 		$data['data']['surat_keluar'] = $this->db->get_where('surat_keluar', ['id_surat_keluar' => $id_surat_keluar])->row();
 
 		$this->load->view('template/template', $data);

@@ -32,16 +32,16 @@
             foreach ($this->db->get('surat_keluar')->result() as $item) {
               ?>
               <tr>
-                <td><?php echo $this->pustaka->tanggal_indo($item->tanggal); ?></td>
+                <td><?php echo $pustaka->tanggalIndo($item->tanggal); ?></td>
                 <td><?php echo $item->nosurat; ?></td>
-                <td><?php echo $this->db->get_where('kategori', ['id' => $item->kategori_id])->row()->kategori; ?></td>
+                <td><?php echo $this->db->get_where('kategori', ['id_kategori' => $item->id_kategori])->row()->kategori; ?></td>
                 <td><?php echo $item->tujuan; ?></td>
                 <td><?php echo $item->perihal; ?></td>
-                <td><a href="<?php echo base_url('tools/download_keluar/' . $item->id); ?>"><?php echo $item->file; ?></a></td>
+                <td><a href="<?php echo base_url('tools/download_keluar/' . $item->id_surat_keluar); ?>"><?php echo $item->file; ?></a></td>
                 <td>
                   <div class="btn-group">
-                    <a class="btn btn-primary" href="<?php echo base_url('surat_keluar/ubah/' . $item->id); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
-                    <a class="btn btn-primary" href="#" onclick="hapus('<?php echo $item->id; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-primary" href="<?php echo base_url('surat_keluar/ubah/' . $item->id_surat_keluar); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-primary" href="#" onclick="hapus('<?php echo $item->id_surat_keluar; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
                   </div>
                 </td>
               </tr>
