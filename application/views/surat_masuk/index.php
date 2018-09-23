@@ -1,6 +1,6 @@
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-book"></i> Surat Masuk</h1>
+    <h1><i class="fa fa-envelope"></i> Surat Masuk</h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -13,7 +13,13 @@
       <div class="tile-body">
         <div class="tile-title-w-btn">
           <h3 class="title">Data Surat Masuk</h3>
-          <p><a class="btn btn-primary icon-btn" href="<?php echo base_url('surat_masuk/tambah'); ?>"><i class="fa fa-plus"></i>Surat Masuk</a></p>
+          <?php
+          if ($this->session->level == 'a') {
+            ?>
+              <p><a class="btn btn-primary icon-btn" href="<?php echo base_url('surat_masuk/tambah'); ?>"><i class="fa fa-plus"></i>Surat Masuk</a></p>
+            <?php
+          }
+          ?>
         </div>
         <table class="table table-hover table-bordered datatable">
           <thead>
@@ -24,7 +30,13 @@
               <th>Pengirim</th>
               <th>Perihal</th>
               <th>Berkas</th>
-              <th>Proses</th>
+              <?php
+              if ($this->session->level == 'a') {
+                ?>
+                  <th>Proses</th>
+                <?php
+              }
+              ?>
             </tr>
           </thead>
           <tbody>
@@ -38,12 +50,18 @@
                 <td><?php echo $item->pengirim; ?></td>
                 <td><?php echo $item->perihal; ?></td>
                 <td><a href="<?php echo base_url('tools/download_masuk/' . $item->id_surat_masuk); ?>"><?php echo $item->file; ?></a></td>
-                <td>
-                  <div class="btn-group">
-                    <a class="btn btn-primary" href="<?php echo base_url('surat_masuk/ubah/' . $item->id_surat_masuk); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
-                    <a class="btn btn-primary" href="javascript:void(0)" onclick="hapus('<?php echo $item->id_surat_masuk; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
-                  </div>
-                </td>
+                <?php
+                if ($this->session->level == 'a') {
+                  ?>
+                    <td>
+                      <div class="btn-group">
+                        <a class="btn btn-primary" href="<?php echo base_url('surat_masuk/ubah/' . $item->id_surat_masuk); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-primary" href="javascript:void(0)" onclick="hapus('<?php echo $item->id_surat_masuk; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                      </div>
+                    </td>
+                  <?php
+                }
+                ?>
               </tr>
               <?php
             }

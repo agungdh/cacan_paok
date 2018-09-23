@@ -17,4 +17,15 @@ function hapus(id) {
         }
     });
 };
+
+function suratMasuk(id) {
+    if (id == 0) {
+        return false;
+    }
+
+    $.get( "<?php echo base_url('surat_keluar/ajax_modal/'); ?>" + id, function( data ) {
+        $("#modalmbodi").html(data);
+        $("#modalSuratMasuk").modal();
+    });
+}
 </script>

@@ -14,7 +14,7 @@
       <div class="tile-body">
         <form id="form_ubah" method="post" action="<?php echo base_url('profil/aksi_ubah'); ?>" enctype="multipart/form-data">
           
-          <input type="hidden" name="where[id]" value="<?php echo $data['user']->id; ?>">
+          <input type="hidden" name="where[id_user]" value="<?php echo $data['user']->id_user; ?>">
 
           <div class="form-group">
             <label class="control-label">Nama</label>
@@ -47,7 +47,7 @@
       <div class="tile-body">
         <form id="form_ubah_password" method="post" action="<?php echo base_url('profil/aksi_ubah_password'); ?>">
           
-          <input type="hidden" name="where[id]" value="<?php echo $data['user']->id; ?>">
+          <input type="hidden" name="where[id_user]" value="<?php echo $data['user']->id_user; ?>">
 
           <div class="form-group">
             <label class="control-label">Password</label>

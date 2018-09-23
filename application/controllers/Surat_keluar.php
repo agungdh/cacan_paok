@@ -43,6 +43,13 @@ class Surat_keluar extends CI_Controller {
 					$date=date_create($value);
 					$data[$key] = date_format($date,"Y-m-d");
 					break;
+				case 'id_surat_masuk':
+					if ($value != '') {
+						$data[$key] = $value;
+					} else {
+						$data[$key] = null;
+					}
+					break;
 				default:
 					$data[$key] = $value;
 					break;
@@ -108,5 +115,36 @@ class Surat_keluar extends CI_Controller {
 		unlink('uploads/keluar/' . $id_surat_keluar);
 
 		redirect(base_url('surat_keluar'));
+	}
+
+	function ajax_modal($id) {
+		$pustaka = new Pustaka;
+		
+		$surat_masuk = $this->db->get_where('surat_masuk', ['id_surat_masuk' => $id])->row();
+
+		?>
+		<table class="table">
+			<thead>
+				<tr>
+	              <th>Tanggal</th>
+	              <th>No Surat</th>
+	              <th>Kategori</th>
+	              <th>Pengirim</th>
+	              <th>Perihal</th>
+	              <th>Berkas</th>
+	            </tr>
+			</thead>
+			<tbody>
+				<tr>
+	                <td><?php echo $pustaka->tanggalIndo($surat_masuk->tanggal); ?></td>
+	                <td><?php echo $surat_masuk->nosurat; ?></td>
+	                <td><?php echo $this->db->get_where('kategori', ['id_kategori' => $surat_masuk->id_kategori])->row()->kategori; ?></td>
+	                <td><?php echo $surat_masuk->pengirim; ?></td>
+	                <td><?php echo $surat_masuk->perihal; ?></td>
+	                <td><a href="<?php echo base_url('tools/download_masuk/' . $surat_masuk->id_surat_masuk); ?>"><?php echo $surat_masuk->file; ?></a></td>
+	              </tr>
+			</tbody>
+		</table>
+		<?php
 	}
 }
