@@ -11,13 +11,4 @@ $('#simpan').click(function(){
 
 $('.select2').select2();
 
-$("#kategori").easyAutocomplete({
-	url: function(phrase) {
-		return "<?php echo base_url('tools/ajax_kategori'); ?>?kat=" + phrase;
-	},
-
-	getValue: "name",
-
-	requestDelay: 200
-});
 </script>

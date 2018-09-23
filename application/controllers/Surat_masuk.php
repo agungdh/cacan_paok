@@ -50,7 +50,7 @@ class Surat_masuk extends CI_Controller {
 						$data['kategori_id_surat_masuk'] = $kategori->id_surat_masuk;
 					} else {
 						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
-						$data['kategori_id_surat_masuk'] = $this->db->insert_id_surat_masuk();
+						$data['kategori_id_surat_masuk'] = $this->db->insert_id();
 					}
 					break;
 				default:
@@ -64,7 +64,7 @@ class Surat_masuk extends CI_Controller {
 
 		$this->db->insert('surat_masuk', $data);
 
-		move_uploaded_file($berkas['tmp_name'], 'uploads/masuk/' . $this->db->insert_id_surat_masuk());
+		move_uploaded_file($berkas['tmp_name'], 'uploads/masuk/' . $this->db->insert_id());
 
 		redirect(base_url('surat_masuk'));
 	}
@@ -83,7 +83,7 @@ class Surat_masuk extends CI_Controller {
 						$data['kategori_id_surat_masuk'] = $kategori->id_surat_masuk;
 					} else {
 						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
-						$data['kategori_id_surat_masuk'] = $this->db->insert_id_surat_masuk();
+						$data['kategori_id_surat_masuk'] = $this->db->insert_id();
 					}
 					break;
 				default:
@@ -122,12 +122,4 @@ class Surat_masuk extends CI_Controller {
 
 		redirect(base_url('surat_masuk'));
 	}
-
-	function ajax_jabatan() {
-		$query = $this->db->query('SELECT kategori name
-									FROM kategori
-									WHERE kategori LIKE ?', ['%' . $this->input->get('kat') . '%']);
-		echo json_encode($query->result());
-	}
-
 }

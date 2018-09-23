@@ -14,6 +14,8 @@
       <div class="tile-body">
         <form method="post" action="<?php echo base_url('surat_masuk/aksi_tambah'); ?>" enctype=multipart/form-data>
 
+          <input type="hidden" name="data[id_user]" value="<?php echo $this->session->id_user; ?>">
+
           <div class="form-group">
             <label class="control-label">No Surat</label>
             <input class="form-control" type="text" required placeholder="Masukan No Surat" name="data[nosurat]">
@@ -26,7 +28,15 @@
 
           <div class="form-group">
             <label class="control-label">Kategori</label>
-            <input class="form-control" type="text" required placeholder="Masukan Kategori" name="data[kategori]" id="kategori">
+            <select class="form-control select2" required name="data[id_kategori]">
+              <?php
+              foreach ($this->db->get('kategori')->result() as $item) {
+                ?>
+                <option value="<?php echo $item->id_kategori; ?>"><?php echo $item->kategori; ?></option>
+                <?php
+              }
+              ?>
+            </select>
           </div>
 
           <div class="form-group">

@@ -9,7 +9,7 @@
 </div>
 <div class="row">
   <div class="col-md-12 col-lg-4">
-    <div class="widget-small primary coloured-icon"><i class="icon fa fa-envelope fa-3x"></i>
+    <div class="widget-small primary coloured-icon"><a href="<?php echo base_url('surat_masuk'); ?>"><i class="icon fa fa-envelope fa-3x"></i></a>
       <div class="info">
         <h4>Surat Masuk</h4>
         <p><b><?php echo count($this->db->get('surat_masuk')->result()); ?></b></p>
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="col-md-12 col-lg-4">
-    <div class="widget-small info coloured-icon"><i class="icon fa fa-envelope fa-3x"></i>
+    <div class="widget-small info coloured-icon"><a href="<?php echo base_url('surat_keluar'); ?>"><i class="icon fa fa-envelope fa-3x"></i></a>
       <div class="info">
         <h4>Surat Keluar</h4>
         <p><b><?php echo count($this->db->get('surat_keluar')->result()); ?></b></p>
@@ -25,10 +25,10 @@
     </div>
   </div>
   <div class="col-md-12 col-lg-4">
-    <div class="widget-small warning coloured-icon"><i class="icon fa fa-calendar fa-3x"></i>
+    <div class="widget-small warning coloured-icon"><a href="javascript:void(0)"><i class="icon fa fa-calendar fa-3x"></i></a>
       <div class="info">
         <h4>Tanggal</h4>
-        <p><b><?php echo $this->pustaka->tanggal_indo_string(date('Y-m-d')); ?></b></p>
+        <p><b><?php echo $pustaka->tanggalIndoString(date('Y-m-d')); ?></b></p>
       </div>
     </div>
   </div>

@@ -19,6 +19,7 @@
           <thead>
             <tr>
               <th>Tanggal</th>
+              <th>Surat Masuk</th>
               <th>No Surat</th>
               <th>Kategori</th>
               <th>Tujuan</th>
@@ -33,6 +34,7 @@
               ?>
               <tr>
                 <td><?php echo $pustaka->tanggalIndo($item->tanggal); ?></td>
+                <td><a href="<?php echo $item->id_surat_masuk != $item->id_surat_masuk ? : 'javascript:void(0)'; ?>"><?php echo $item->id_surat_masuk != null ? $this->db->get_where('surat_masuk', ['id_surat_masuk' => $item->id_surat_masuk])->row()->nosurat : '-'; ?></a></td>
                 <td><?php echo $item->nosurat; ?></td>
                 <td><?php echo $this->db->get_where('kategori', ['id_kategori' => $item->id_kategori])->row()->kategori; ?></td>
                 <td><?php echo $item->tujuan; ?></td>
@@ -41,7 +43,7 @@
                 <td>
                   <div class="btn-group">
                     <a class="btn btn-primary" href="<?php echo base_url('surat_keluar/ubah/' . $item->id_surat_keluar); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
-                    <a class="btn btn-primary" href="#" onclick="hapus('<?php echo $item->id_surat_keluar; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-primary" href="javascript:void(0)" onclick="hapus('<?php echo $item->id_surat_keluar; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
                   </div>
                 </td>
               </tr>

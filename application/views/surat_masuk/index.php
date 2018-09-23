@@ -41,7 +41,7 @@
                 <td>
                   <div class="btn-group">
                     <a class="btn btn-primary" href="<?php echo base_url('surat_masuk/ubah/' . $item->id_surat_masuk); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
-                    <a class="btn btn-primary" href="#" onclick="hapus('<?php echo $item->id_surat_masuk; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-primary" href="javascript:void(0)" onclick="hapus('<?php echo $item->id_surat_masuk; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
                   </div>
                 </td>
               </tr>

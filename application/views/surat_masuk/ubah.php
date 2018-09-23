@@ -14,7 +14,9 @@
       <div class="tile-body">
         <form method="post" action="<?php echo base_url('surat_masuk/aksi_ubah'); ?>" enctype=multipart/form-data>
 
-          <input type="hidden" name="where[id]" value="<?php echo $data['surat_masuk']->id; ?>">
+          <input type="hidden" name="where[id_surat_masuk]" value="<?php echo $data['surat_masuk']->id_surat_masuk; ?>">
+
+          <input type="hidden" name="data[id_user]" value="<?php echo $this->session->id_user; ?>">
 
           <div class="form-group">
             <label class="control-label">No Surat</label>
@@ -23,12 +25,20 @@
 
           <div class="form-group">
             <label class="control-label">Tanggal</label>
-            <input class="form-control datepicker" type="text" required placeholder="Masukan Tanggal" name="data[tanggal]" value="<?php echo $this->pustaka->tanggal_indo($data['surat_masuk']->tanggal); ?>">
+            <input class="form-control datepicker" type="text" required placeholder="Masukan Tanggal" name="data[tanggal]" value="<?php echo $pustaka->tanggalIndo($data['surat_masuk']->tanggal); ?>">
           </div>
 
           <div class="form-group">
             <label class="control-label">Kategori</label>
-            <input class="form-control" type="text" required placeholder="Masukan Kategori" name="data[kategori]" value="<?php echo $this->db->get_where('kategori', ['id' => $data['surat_masuk']->kategori_id])->row()->kategori; ?>" id="kategori">
+            <select class="form-control select2" required name="data[id_kategori]">
+              <?php
+              foreach ($this->db->get('kategori')->result() as $item) {
+                ?>
+                <option <?php echo $item->id_kategori == $data['surat_masuk']->id_kategori ? 'selected' : null; ?> value="<?php echo $item->id_kategori; ?>"><?php echo $item->kategori; ?></option>
+                <?php
+              }
+              ?>
+            </select>
           </div>
 
           <div class="form-group">

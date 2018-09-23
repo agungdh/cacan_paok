@@ -43,16 +43,6 @@ class Surat_keluar extends CI_Controller {
 					$date=date_create($value);
 					$data[$key] = date_format($date,"Y-m-d");
 					break;
-				case 'kategori':
-					$this->db->like('kategori', $value);
-					$kategori = $this->db->get('kategori')->row();
-					if ($kategori != null) {
-						$data['kategori_id_surat_keluar'] = $kategori->id_surat_keluar;
-					} else {
-						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
-						$data['kategori_id_surat_keluar'] = $this->db->insert_id_surat_keluar();
-					}
-					break;
 				default:
 					$data[$key] = $value;
 					break;
@@ -64,7 +54,7 @@ class Surat_keluar extends CI_Controller {
 
 		$this->db->insert('surat_keluar', $data);
 
-		move_uploaded_file($berkas['tmp_name'], 'uploads/keluar/' . $this->db->insert_id_surat_keluar());
+		move_uploaded_file($berkas['tmp_name'], 'uploads/keluar/' . $this->db->insert_id());
 
 		redirect(base_url('surat_keluar'));
 	}
@@ -76,14 +66,11 @@ class Surat_keluar extends CI_Controller {
 					$date=date_create($value);
 					$data[$key] = date_format($date,"Y-m-d");
 					break;
-				case 'kategori':
-					$this->db->like('kategori', $value);
-					$kategori = $this->db->get('kategori')->row();
-					if ($kategori != null) {
-						$data['kategori_id_surat_keluar'] = $kategori->id_surat_keluar;
+				case 'id_surat_masuk':
+					if ($value != '') {
+						$data[$key] = $value;
 					} else {
-						$this->db->insert('kategori', ['kategori' => ucwords($value)]);
-						$data['kategori_id_surat_keluar'] = $this->db->insert_id_surat_keluar();
+						$data[$key] = null;
 					}
 					break;
 				default:
@@ -122,12 +109,4 @@ class Surat_keluar extends CI_Controller {
 
 		redirect(base_url('surat_keluar'));
 	}
-
-	function ajax_jabatan() {
-		$query = $this->db->query('SELECT kategori name
-									FROM kategori
-									WHERE kategori LIKE ?', ['%' . $this->input->get('kat') . '%']);
-		echo json_encode($query->result());
-	}
-
 }

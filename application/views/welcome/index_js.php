@@ -4,7 +4,7 @@ var data = {
             
             <?php
             for ($i=0; $i <= 4; $i++) {
-                  $array[] = $this->pustaka->tanggal_indo_string_bulan_tahun(date("m-Y", strtotime("-" . $i . " months")));
+                  $array[] = $pustaka->tanggalIndoStringBulanTahun(date("m-Y", strtotime("-" . $i . " months")));
             }
             foreach (array_reverse($array) as $item) {
                   echo '"'.$item.'",';
