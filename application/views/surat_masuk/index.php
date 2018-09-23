@@ -7,6 +7,35 @@
     <li class="breadcrumb-item">Surat Masuk</li>
   </ul>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <h3 class="tile-title">Filter</h3>
+
+      <div class="form-group">
+        <label class="control-label">Kabupaten</label>
+        <select class="form-control select2" name="id_kabupaten" id="id_kabupaten">
+          <option value="0">Semua</option>
+          <?php
+          foreach ($this->db->get('kategori')->result() as $item) {
+            ?>
+            <option value="<?php echo $item->id_kategori; ?>"><?php echo $item->kategori; ?></option>
+            <?php
+          }
+          ?>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Tanggal</label>
+        <input class="form-control" autocomplete="off" type="text" id="tanggal">
+      </div>
+      
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <div class="tile">
@@ -40,32 +69,6 @@
             </tr>
           </thead>
           <tbody>
-            <?php
-            foreach ($this->db->get('surat_masuk')->result() as $item) {
-              ?>
-              <tr>
-                <td><?php echo $pustaka->tanggalIndo($item->tanggal); ?></td>
-                <td><?php echo $item->nosurat; ?></td>
-                <td><?php echo $this->db->get_where('kategori', ['id_kategori' => $item->id_kategori])->row()->kategori; ?></td>
-                <td><?php echo $item->pengirim; ?></td>
-                <td><?php echo $item->perihal; ?></td>
-                <td><a href="<?php echo base_url('tools/download_masuk/' . $item->id_surat_masuk); ?>"><?php echo $item->file; ?></a></td>
-                <?php
-                if ($this->session->level == 'a') {
-                  ?>
-                    <td>
-                      <div class="btn-group">
-                        <a class="btn btn-primary" href="<?php echo base_url('surat_masuk/ubah/' . $item->id_surat_masuk); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-primary" href="javascript:void(0)" onclick="hapus('<?php echo $item->id_surat_masuk; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
-                      </div>
-                    </td>
-                  <?php
-                }
-                ?>
-              </tr>
-              <?php
-            }
-            ?>
           </tbody>
         </table>
       </div>

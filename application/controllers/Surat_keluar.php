@@ -147,4 +147,50 @@ class Surat_keluar extends CI_Controller {
 		</table>
 		<?php
 	}
+
+	function ajax($id, $tanggalAwal = null, $tanggalAkhir = null) {
+		$pustaka = new Pustaka();
+
+		$sql = 'SELECT * FROM surat_keluar WHERE 1 ';
+
+		if ($id != 0) {
+			$sql .= ' AND id_kategori = ' . $id;
+		}
+
+		if ($tanggalAwal != null && $tanggalAkhir != null) {
+			$tAwal = date('Y-m-d', strtotime($tanggalAwal));
+			$tAkhir = date('Y-m-d', strtotime($tanggalAkhir));
+
+			$sql .= " AND tanggal >= '" . $tAwal . "'";
+			$sql .= " AND tanggal <= '" . $tAkhir . "'";
+		}
+
+		$surat_keluar = $this->db->query($sql)->result();
+
+	      foreach ($surat_keluar as $item) {
+          ?>
+          <tr>
+            <td><?php echo $pustaka->tanggalIndo($item->tanggal); ?></td>
+            <td><a href="javascript:void(0)" onclick="suratMasuk('<?php echo $item->id_surat_masuk != null ? $item->id_surat_masuk : 0 ?>')"><?php echo $item->id_surat_masuk != null ? $this->db->get_where('surat_masuk', ['id_surat_masuk' => $item->id_surat_masuk])->row()->nosurat : '-'; ?></a></td>
+            <td><?php echo $item->nosurat; ?></td>
+            <td><?php echo $this->db->get_where('kategori', ['id_kategori' => $item->id_kategori])->row()->kategori; ?></td>
+            <td><?php echo $item->tujuan; ?></td>
+            <td><?php echo $item->perihal; ?></td>
+            <td><a href="<?php echo base_url('tools/download_keluar/' . $item->id_surat_keluar); ?>"><?php echo $item->file; ?></a></td>
+            <?php
+            if ($this->session->level == 'a') {
+              ?>
+                <td>
+                  <div class="btn-group">
+                    <a class="btn btn-primary" href="<?php echo base_url('surat_keluar/ubah/' . $item->id_surat_keluar); ?>" data-toggle="tooltip" title="Ubah"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-primary" href="javascript:void(0)" onclick="hapus('<?php echo $item->id_surat_keluar; ?>')" data-toggle="tooltip" title="Hapus"><i class="fa fa-trash"></i></a>
+                  </div>
+                </td>
+              <?php
+            }
+            ?>
+          </tr>
+          <?php
+        }
+	}
 }

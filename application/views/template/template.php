@@ -15,6 +15,8 @@ $now = date('YmdHis');
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title><?php echo JUDUL; ?></title>
 
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(''); ?>assets/daterangepicker/daterangepicker.css">
+
     <!-- Favicon -->
     <?php
     if (file_exists('uploads/favicon')) {
@@ -87,6 +89,7 @@ $now = date('YmdHis');
     <script type="text/javascript" src="<?php echo base_url('assets/'); ?>js/plugins/sweetalert2.all.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/'); ?>js/plugins/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url('assets/'); ?>EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/'); ?>daterangepicker/daterangepicker.js"></script>
     <!-- End JS -->
 
     <!-- JS Manual -->
